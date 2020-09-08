@@ -1,7 +1,7 @@
 // William Bushie - CSC250 - Fall 2020
 import java.util.Scanner;
 
-public class CSC250HW1
+public class CSC250HW
 {
     public static void main(String[] args)
     {
