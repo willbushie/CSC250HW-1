@@ -6,26 +6,32 @@ public class CSC250HW
     public static void main(String[] args)
     {
         // creation of all necessary variables
-        int vowelCount = 0;
+        String binaryString = "";
+        int divRemainderResult = 0;
+        int divModuloResult = 0;
         
         // print statment & creation of user input value 
-        System.out.println("\nEnter text to find vowels within?");
+        System.out.println("\nEnter the decimal string to convert to binary:");
         Scanner userInput = new Scanner(System.in);
-        String bookInitial = userInput.nextLine();
+        String inputString = userInput.nextLine();
 
-        // Change string into lowercase
-        String bookLowerCase = bookInitial.toLowerCase();
+        // Store string into new holder integer
+        int inputInteger = Integer.parseInt(inputString);
 
-        // creation and execution of for loop and if loop
-        for(int x = 0; x < bookLowerCase.length(); x++)
+        // process of changing decimal to binary numbers
+            // loop to find all modulo results & store them
+            // store input integer into divRemainderResult
+        divRemainderResult = inputInteger;
+        for (;divRemainderResult > 0;)
         {
-            if(bookLowerCase.charAt(x) == 'a' || bookLowerCase.charAt(x) == 'e' || bookLowerCase.charAt(x) == 'i' || bookLowerCase.charAt(x) == 'o' || bookLowerCase.charAt(x) == 'u')
-            {
-                vowelCount++;
-            }
+            divModuloResult = (divRemainderResult % 2);
+            divRemainderResult = (divRemainderResult / 2);
+
+            // store divModuloResult onto front of binaryInteger
+            binaryString = Integer.toString(divModuloResult) + binaryString;
         }
 
-        // print statement of total vowels found in string
-        System.out.println("\n" + "Total number of vowels found within " + "\"" + bookInitial + "\"" + " is " + vowelCount + ".");
+        // print statement of binary string from decimal string
+        System.out.println("\n" + "The integer numbers " + "\"" + inputInteger + "\"" + " becomes "+ "\"" + binaryString + "\"" + " in binary.");
     }
 }
