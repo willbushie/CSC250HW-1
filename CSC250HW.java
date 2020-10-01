@@ -1,29 +1,45 @@
 // main file - William Bushie - CSC250 - Fall 2020
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class CSC250HW
 {
     public static void main(String[] args) 
     {        
-        // create the objects in the class
-        BibleBook book1 = new BibleBook();
-        BibleBook book2 = new BibleBook();
-        BibleBook book3 = new BibleBook();
-
-        // add attributes to all books
-        book1.name = "Matthew";
-        book1.chapters = 28;
-        book1.summary = "the Gospel of Jesus Christ";
-
-        book2.name = "Mark";
-        book2.chapters = 16;
-        book2.summary = "focuses on the death of Jesus";
-
-        book3.name = "Luke";
-        book3.chapters = 24;
-        book3.summary = "covers Jesus' origin, birth, death, resurection and ascension";
-    
-        book1.displayBook();
-        book2.displayBook();
-        book3.displayBook();
+        // need to create a print of each book, one line as follows "Matthew:28:The Gospel of Christ." 
+        // create an array to store each of the books
+        String bookStringArray[] = new String[27];
+        int count = 0;
+        
+        // read in the appropriate data from the file & store in array
+        try
+        {
+            File myObj = new File("input.dat");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine())
+            {
+                String data = myReader.nextLine();
+                bookStringArray[count] = data;
+                //System.out.println(data);
+                count += 1;
+            }
+            myReader.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+        
+        // print each index in the array on a line
+        System.out.println("\n");
+        for (String data : bookStringArray) 
+        {
+            System.out.println(data);
+        }
+        System.out.println("\n");
+        //System.out.println("completed");
     }    
 }
