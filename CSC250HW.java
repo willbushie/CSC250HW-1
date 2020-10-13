@@ -1,64 +1,89 @@
 // main file - William Bushie - CSC250 - Fall 2020
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-public class CSC250HW
-{
-    public static void main(String[] args) throws Exception
-    {        
-        // need to create a print of each book, one line as follows "Matthew:28:The Gospel of Christ." 
-        // create an arraylist to store each of the books
-        ArrayList<String> bookStringArrayList = new ArrayList<String>();
-        
+public class CSC250HW {
+    // declaring the objects in the class
+    String name;
+    int chapters;
+    String summary;
+
+    // constructor - constructing the objects when called upon. 
+    public CSC250HW()
+    {
+        this.name = name;
+        this.chapters = chapters;
+        this.summary = summary;
+    }
+
+    // method to read in the data from the sheet & create an arraylist
+    public static ArrayList<ArrayList<String>> createArrayList() throws FileNotFoundException 
+    {
+        // create an arraylist to store each string/line from file, of the books
+        ArrayList<ArrayList<String>> finalArrayList = new ArrayList<ArrayList<String>>();
+
         // read in the appropriate data from the file & store in arraylist
         File myObj = new File("input.dat");
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine())
         {
-            String data = myReader.nextLine();
-            bookStringArrayList.add(data);
-            //System.out.println(data);
+            // create string holder and read in from file - contains whole line as string
+            String dataReadIn = myReader.nextLine();
+            // split dataReadIn into 3 pieces
+            String[] dataSplitString = dataReadIn.split(":");
+            // correct the mismatch error for types String[] and Array
+            //List<String> dataSplitList = Arrays.asList(dataSplitString);
+            // add dataSplit to the finalArrayList
+            finalArrayList.add(dataSplitString);
         }
         myReader.close();
+        return finalArrayList;
+    }
 
-/*         // print each index in the array on a line
+    // method to print every book in the arraylist
+    public static void printEachBook(ArrayList<String> arrayList)
+    {
+        // print each index in the array on a line
         System.out.println("\n");
-        for (String data : bookStringArray) 
+        for (String data : arrayList) 
         {
             System.out.println(data);
         }
         System.out.println("\n");
         //System.out.println("completed");
- */    
-        // ask user for key word to search
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter a keyword to search for:");
-        String userInput = input.nextLine();
-        input.close();
+        //System.out.println(arrayList.get(1));
+        
+    }
 
-        // search the arraylist element for the keyword & print whether the key is found or not
-        int size = bookStringArrayList.size();
-        int index = 0;
-        System.out.println("=============================");
-        while (index < size)
-        {
-            String testString = bookStringArrayList.get(index);
-            if (testString.contains(userInput))
-            {
-                System.out.println("This BibleBook contains the keyword:");
-                System.out.println(testString);
-                return;
-                // uncomment (vvv) to find all searches that contain the keyword & comment out the return statement
-                //index += 1;
-            }
-            else
-            {
-                index += 1;
-            }
-        }
-        // if the key is not found in any of the arraylist objects, print not found
-        System.out.println("Keyword was not found within in the search.");
+    // method to sort the arraylist by # of chapters - using a buble sort
+    public void bubbleSortInt(int arr[]) 
+    {
+        int n = arr.length; 
+        for (int i = 0; i < n-1; i++) 
+            for (int j = 0; j < n-i-1; j++) 
+                if (arr[j] > arr[j+1]) 
+                { 
+                    // swap arr[j+1] and arr[j] 
+                    int temp = arr[j]; 
+                    arr[j] = arr[j+1]; 
+                    arr[j+1] = temp; 
+                } 
+    }
+
+    // method to sort the arraylist by name alphabetically - using a buble sort
+    public void bubbleSortAlpha(String name)
+    {
+
+    }
+
+    // Main method
+    public static void main(String[] args) throws Exception
+    {        
+        
     }    
 }
