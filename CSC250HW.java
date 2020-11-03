@@ -1,89 +1,51 @@
 // main file - William Bushie - CSC250 - Fall 2020
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 
-public class CSC250HW {
-    // declaring the objects in the class
-    String name;
-    int chapters;
-    String summary;
 
-    // constructor - constructing the objects when called upon. 
-    public CSC250HW()
+public class CSC250HW 
+{
+    // main method
+    public static void main(String[] args)
     {
-        this.name = name;
-        this.chapters = chapters;
-        this.summary = summary;
-    }
-
-    // method to read in the data from the sheet & create an arraylist
-    public static ArrayList<ArrayList<String>> createArrayList() throws FileNotFoundException 
-    {
-        // create an arraylist to store each string/line from file, of the books
-        ArrayList<ArrayList<String>> finalArrayList = new ArrayList<ArrayList<String>>();
-
-        // read in the appropriate data from the file & store in arraylist
-        File myObj = new File("input.dat");
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine())
+        // create random array
+        int[] playerAges = new int[5];
+        // create new player objects & store into array randomly
+        for(int i = 0; i < playerAges.length; i++)
         {
-            // create string holder and read in from file - contains whole line as string
-            String dataReadIn = myReader.nextLine();
-            // split dataReadIn into 3 pieces
-            String[] dataSplitString = dataReadIn.split(":");
-            // correct the mismatch error for types String[] and Array
-            //List<String> dataSplitList = Arrays.asList(dataSplitString);
-            // add dataSplit to the finalArrayList
-            finalArrayList.add(dataSplitString);
+            // generate random int
+            Random r = new Random();
+            int storedInt = r.nextInt(10);
+            Player player = new Player(storedInt);
+            //store into array of players at pos i
+            playerAges[i] = player.age;
         }
-        myReader.close();
-        return finalArrayList;
+
+        //int[] testArray = new int[]{7,3,2,6,9};
+        //sort array using merge sort | print before & after
+        // print before
+        System.out.println("BEFORE:");
+        CSC250HW.displayArray(playerAges); //(testArray);
+        // call merge sort
+        sorting.mergeSort(playerAges, 0, playerAges.length-1);//(testArray, 0, testArray.length-1);
+        // print after merge sort
+        System.out.println("AFTER:");
+        CSC250HW.displayArray(playerAges);//(testArray)
+
+        // call binary search to find a player with a certain age
+        System.out.println("Seach for specified number (9)");
+        System.out.println(searching.isInArray(searching.binarySearchRec(playerAges, 0, playerAges.length-1, 9)));
+        //System.out.println(searching.binarySearchNoRec(playerAges, 27));
+        /*int test = 4/5;
+        System.out.println(test);*/
     }
 
-    // method to print every book in the arraylist
-    public static void printEachBook(ArrayList<String> arrayList)
-    {
-        // print each index in the array on a line
-        System.out.println("\n");
-        for (String data : arrayList) 
-        {
-            System.out.println(data);
-        }
-        System.out.println("\n");
-        //System.out.println("completed");
-        //System.out.println(arrayList.get(1));
-        
+    // method to display an array
+    static void displayArray(int[] ar)
+	{
+		for(int i = 0; i < ar.length; i++)
+		{
+			System.out.println(ar[i]);
+		}
     }
-
-    // method to sort the arraylist by # of chapters - using a buble sort
-    public void bubbleSortInt(int arr[]) 
-    {
-        int n = arr.length; 
-        for (int i = 0; i < n-1; i++) 
-            for (int j = 0; j < n-i-1; j++) 
-                if (arr[j] > arr[j+1]) 
-                { 
-                    // swap arr[j+1] and arr[j] 
-                    int temp = arr[j]; 
-                    arr[j] = arr[j+1]; 
-                    arr[j+1] = temp; 
-                } 
-    }
-
-    // method to sort the arraylist by name alphabetically - using a buble sort
-    public void bubbleSortAlpha(String name)
-    {
-
-    }
-
-    // Main method
-    public static void main(String[] args) throws Exception
-    {        
-        
-    }    
 }
