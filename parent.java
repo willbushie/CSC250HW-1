@@ -1,5 +1,3 @@
-import org.graalvm.compiler.nodes.MergeNode;
-
 // thread class
 public class parent extends Thread
 {
