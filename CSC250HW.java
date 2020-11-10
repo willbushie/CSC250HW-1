@@ -33,8 +33,8 @@ public class CSC250HW
         CSC250HW.displayArray(playerAges);//(testArray)
 
         // call binary search to find a player with a certain age
-        System.out.println("Seach for specified number (9)");
-        System.out.println(searching.isInArray(searching.binarySearchRec(playerAges, 0, playerAges.length-1, 9)));
+        //System.out.println("Seach for specified number (9)");
+        //System.out.println(searching.isInArray(searching.binarySearchRec(playerAges, 0, playerAges.length-1, 9)));
         //System.out.println(searching.binarySearchNoRec(playerAges, 27));
         /*int test = 4/5;
         System.out.println(test);*/

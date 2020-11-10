@@ -10,9 +10,26 @@ public class sorting
             int end1 = begin + ((end - begin)/2);
             int begin2 = end1 + 1;
             int end2 = end;
-            sorting.mergeSort(ar, begin1, end1);
-            sorting.mergeSort(ar, begin2, end2);
-            sorting.merge(ar, begin1, end1, begin2, end2);
+			//Runnable r = new MyRunnable(param_value);
+			//new Thread(r).start();
+			parent p1 = new parent("p2",ar, begin1, end1);
+			p1.start();
+			//sorting.mergeSort(ar, begin1, end1);
+			parent p2 = new parent("p2",ar, begin2, end2);
+			p2.start();
+			//sorting.mergeSort(ar, begin2, end2);
+			try
+			{
+				// print the total number of threads currently running
+				//System.out.println("active threads: " + Thread.activeCount());
+				p1.join();
+				p2.join();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			sorting.merge(ar, begin1, end1, begin2, end2);
         }
     }
 
